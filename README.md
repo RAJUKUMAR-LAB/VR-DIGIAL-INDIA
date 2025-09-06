@@ -1,5 +1,18 @@
 # VR Digital India - Election Digital Marketing Platform
 
+## 🚀 **LIVE WEBSITE LINK**
+```
+https://rajukumar-lab.github.io/VR-DIGIAL-INDIA/
+```
+
+### **⚡ Quick Enable (2 Minutes)**
+1. Go to [Repository Settings](https://github.com/RAJUKUMAR-LAB/VR-DIGIAL-INDIA/settings/pages)
+2. Under **Pages** → **Source**: Select "Deploy from a branch"
+3. Select **main** branch and **/ (root)** folder
+4. Click **Save** → Wait 2-3 minutes → LIVE! ✅
+
+---
+
 Complete digital marketing solution for election campaigns in India
 
 ## Project Description
