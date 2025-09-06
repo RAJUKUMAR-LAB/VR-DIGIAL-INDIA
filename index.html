@@ -413,3 +413,16 @@
     <script src="js/script.js"></script>
 </body>
 </html>
+
+# Create GitHub repository and deploy
+cd /workspaces/VR-DIGIAL-INDIA
+git init
+git add .
+git commit -m "VR Digital India - Election Marketing Platform"
+git branch -M main
+
+# Create public repository
+gh repo create VR-DIGIAL-INDIA --public --source . --push
+
+# Enable GitHub Pages
+gh api repos/:owner/VR-DIGIAL-INDIA/pages -X POST -f source='{"branch":"main","path":"/"}'
