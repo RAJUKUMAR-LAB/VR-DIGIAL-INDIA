@@ -398,6 +398,49 @@ body {
     margin: 0 auto 1.5rem;
     color: white;
     font-size: 2rem;
+    transition: all 0.3s ease;
+}
+
+/* Specific service icon colors */
+.service-card:nth-child(1) .service-icon { 
+    background: linear-gradient(135deg, #007bff, #0056b3); 
+} /* SMS - Blue */
+
+.service-card:nth-child(2) .service-icon { 
+    background: linear-gradient(135deg, #28a745, #1e7e34); 
+} /* Voice - Green */
+
+.service-card:nth-child(3) .service-icon { 
+    background: linear-gradient(135deg, #dc3545, #c82333); 
+} /* Digital Ads - Red */
+
+.service-card:nth-child(4) .service-icon { 
+    background: linear-gradient(135deg, #17a2b8, #138496); 
+} /* Analytics - Cyan */
+
+.service-card:nth-child(5) .service-icon { 
+    background: linear-gradient(135deg, #e83e8c, #d91a72); 
+} /* Video - Pink */
+
+.service-card:nth-child(6) .service-icon { 
+    background: linear-gradient(135deg, #fd7e14, #e55a00); 
+} /* Graphics - Orange */
+
+.service-card:nth-child(7) .service-icon { 
+    background: linear-gradient(135deg, #6610f2, #520dc2); 
+} /* Content - Purple */
+
+.service-card:nth-child(8) .service-icon { 
+    background: linear-gradient(135deg, #20c997, #17a085); 
+} /* Social Media - Teal */
+
+.service-card:nth-child(9) .service-icon { 
+    background: linear-gradient(135deg, #6f42c1, #59359a); 
+} /* Mobile App - Indigo */
+
+.service-card:hover .service-icon {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .service-card h3 {
@@ -988,10 +1031,14 @@ body {
     }
     
     .hero-stats {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
         align-items: center;
         margin: 2rem 0;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .stat {

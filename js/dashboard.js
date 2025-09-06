@@ -117,10 +117,6 @@ function updatePageTitle(section) {
         'calls': 'Voice Calls',
         'ads': 'Digital Ads',
         'analytics': 'Analytics',
-        'videos': 'Video Production',
-        'graphics': 'Graphics Design',
-        'photography': 'Photography Services',
-        'microcampaigns': 'Micro Campaigns',
         'contacts': 'Voter Database',
         'templates': 'Templates',
         'reports': 'Reports',
@@ -660,23 +656,6 @@ function trackPageLoad() {
             });
         }
     });
-}
-
-// New Services Modal Functions
-function openVideoModal() {
-    alert('Video Production Modal will open here. Feature coming soon!');
-}
-
-function openGraphicsModal() {
-    alert('Graphics Design Modal will open here. Feature coming soon!');
-}
-
-function openPhotographyModal() {
-    alert('Photography Booking Modal will open here. Feature coming soon!');
-}
-
-function openMicroCampaignModal() {
-    alert('Micro Campaign Modal will open here. Feature coming soon!');
 }
 
 trackPageLoad();
