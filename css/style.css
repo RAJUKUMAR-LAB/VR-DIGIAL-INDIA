@@ -7,6 +7,9 @@
 
 html {
     scroll-behavior: smooth;
+    /* Improve text rendering on mobile */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
 
 body {
@@ -14,12 +17,28 @@ body {
     line-height: 1.6;
     color: #333;
     overflow-x: hidden;
+    /* Improve touch scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    /* This targets touch devices */
+    .btn, .nav-link, .hamburger {
+        min-height: 44px;
+        padding: 12px 16px;
+    }
+    
+    /* Remove hover effects on touch devices */
+    .btn:hover, .nav-link:hover {
+        transform: none;
+    }
 }
 
 /* Header Styles */
@@ -121,6 +140,8 @@ body {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    padding: 5px;
+    z-index: 1001;
 }
 
 .hamburger span {
@@ -129,6 +150,19 @@ body {
     background: #333;
     margin: 3px 0;
     transition: 0.3s;
+    border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
 }
 
 /* Hero Section */
@@ -864,14 +898,35 @@ body {
 }
 
 /* Responsive Design */
+/* Large tablets and small desktops */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    .services-grid, .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2.2rem;
+    }
+}
+
+/* Tablets */
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
     }
     
     .nav-menu {
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: 80px;
         left: 0;
         right: 0;
         background: white;
@@ -882,6 +937,9 @@ body {
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
+        z-index: 999;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
     }
     
     .nav-menu.active {
@@ -890,19 +948,71 @@ body {
         visibility: visible;
     }
     
+    .nav-link {
+        padding: 1rem 0;
+        border-bottom: 1px solid #eee;
+        text-align: center;
+        display: block;
+        width: 100%;
+    }
+    
+    .nav-link:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-menu .btn-whatsapp,
+    .nav-menu .btn-phone {
+        margin: 10px auto;
+        padding: 0.75rem 1.5rem;
+        text-align: center;
+        border-radius: 25px;
+        display: block;
+        width: 100%;
+        max-width: 200px;
+        border-bottom: none;
+    }
+    
+    .hero {
+        padding: 100px 0 60px;
+        text-align: center;
+    }
+    
     .hero h1 {
         font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
     }
     
     .hero-stats {
         flex-direction: column;
         gap: 1rem;
         align-items: center;
+        margin: 2rem 0;
+    }
+    
+    .stat {
+        min-width: 200px;
+        padding: 1.5rem;
     }
     
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 1rem;
+    }
+    
+    .services-grid, .features-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
     
     .contact-grid {
@@ -913,18 +1023,16 @@ body {
     .cta-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 1rem;
     }
     
     .section-header h2 {
         font-size: 2rem;
     }
     
-    .hero p {
-        font-size: 1rem;
-    }
-    
     .btn {
         padding: 0.75rem 1.5rem;
+        font-size: 1rem;
     }
     
     .contact-buttons {
@@ -932,60 +1040,130 @@ body {
         gap: 10px;
     }
     
-    .hero-buttons {
-        flex-direction: column;
-        gap: 15px;
-        align-items: center;
-    }
-    
-    .nav-menu .btn-whatsapp,
-    .nav-menu .btn-phone {
-        margin: 10px 0;
-        padding: 0.5rem 1rem;
-        text-align: center;
+    .service-card, .feature-item, .pricing-card {
+        margin-bottom: 1rem;
     }
 }
 
+/* Mobile phones */
 @media (max-width: 480px) {
     .container {
         padding: 0 15px;
     }
     
     .hero {
-        padding: 100px 0 60px;
+        padding: 90px 0 50px;
+        min-height: 80vh;
     }
     
     .hero h1 {
         font-size: 2rem;
+        line-height: 1.2;
+    }
+    
+    .hero p {
+        font-size: 1rem;
     }
     
     .stat {
         padding: 1rem;
+        min-width: 150px;
     }
     
     .stat h3 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+    }
+    
+    .stat p {
+        font-size: 0.9rem;
     }
     
     .services, .features, .pricing, .contact, .cta {
-        padding: 60px 0;
+        padding: 50px 0;
     }
     
     .service-card, .pricing-card, .contact-form {
         padding: 1.5rem;
+        margin-bottom: 1rem;
     }
     
-    .services-grid, .features-grid, .pricing-grid {
-        grid-template-columns: 1fr;
+    .section-header {
+        margin-bottom: 2rem;
     }
     
     .section-header h2 {
         font-size: 1.8rem;
+        line-height: 1.2;
+    }
+    
+    .section-header p {
+        font-size: 0.9rem;
+    }
+    
+    .btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+        width: 100%;
+        max-width: 250px;
     }
     
     .modal-content {
-        margin: 20% auto;
+        margin: 10% auto;
         padding: 1.5rem;
+        width: 95%;
+        max-width: 400px;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    .navbar {
+        padding: 0.75rem 0;
+    }
+    
+    .nav-brand h2 {
+        font-size: 1.3rem;
+    }
+    
+    .hamburger {
+        padding: 10px;
+    }
+    
+    /* Better touch targets */
+    .nav-link,
+    .btn,
+    .hamburger {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 320px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .service-card, .pricing-card {
+        padding: 1rem;
+    }
+    
+    .stat {
+        padding: 0.8rem;
+        min-width: 120px;
+    }
+    
+    .stat h3 {
+        font-size: 1.5rem;
     }
 }
 
@@ -1034,4 +1212,81 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(135deg, #f7931e, #ff6b35);
+}
+
+/* Mobile-specific optimizations */
+.mobile-device {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+/* Prevent horizontal scroll on mobile */
+.mobile-device * {
+    max-width: 100%;
+}
+
+/* Better touch targets */
+@media (max-width: 768px) {
+    .btn, .nav-link, .hamburger, .service-card, .pricing-card {
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        cursor: pointer;
+    }
+    
+    /* Improve readability on small screens */
+    .hero, .services, .features, .pricing, .contact {
+        text-align: center;
+    }
+    
+    /* Better spacing for touch */
+    .nav-link {
+        padding: 1rem 0;
+        margin: 0.25rem 0;
+    }
+    
+    /* Optimize images for mobile */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* iOS specific fixes */
+@supports (-webkit-overflow-scrolling: touch) {
+    .nav-menu {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    body {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Android specific fixes */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* Landscape orientation optimizations */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    .hero {
+        padding: 60px 0 40px;
+        min-height: 70vh;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-stats {
+        margin: 1rem 0;
+    }
+    
+    .stat {
+        padding: 0.75rem;
+    }
 }

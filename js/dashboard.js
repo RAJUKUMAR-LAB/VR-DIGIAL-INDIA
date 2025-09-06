@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initCharts();
     initSidebar();
     initModals();
+    initMobileDashboard();
 });
 
 // Initialize Dashboard
@@ -19,6 +20,14 @@ function initDashboard() {
             showSection(section);
             setActiveNav(this);
             updatePageTitle(section);
+            
+            // Close sidebar on mobile after navigation
+            if (window.innerWidth <= 1024) {
+                const sidebar = document.querySelector('.sidebar');
+                if (sidebar) {
+                    sidebar.classList.remove('active');
+                }
+            }
         });
     });
     
@@ -39,6 +48,41 @@ function initDashboard() {
                 sidebar.classList.remove('active');
             }
         }
+    });
+}
+
+// Mobile Dashboard Optimizations
+function initMobileDashboard() {
+    // Detect mobile device
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        document.body.classList.add('mobile-dashboard');
+        
+        // Optimize table scrolling on mobile
+        const tables = document.querySelectorAll('.campaigns-table, .contacts-table');
+        tables.forEach(table => {
+            table.style.webkitOverflowScrolling = 'touch';
+        });
+        
+        // Handle orientation change
+        window.addEventListener('orientationchange', function() {
+            setTimeout(function() {
+                // Recalculate chart sizes if needed
+                if (window.campaignChart) {
+                    window.campaignChart.resize();
+                }
+                if (window.performanceChart) {
+                    window.performanceChart.resize();
+                }
+            }, 500);
+        });
+    }
+    
+    // Optimize touch interactions
+    const touchElements = document.querySelectorAll('.btn, .nav-item, .stat-card');
+    touchElements.forEach(element => {
+        element.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
     });
 }
 
@@ -73,6 +117,10 @@ function updatePageTitle(section) {
         'calls': 'Voice Calls',
         'ads': 'Digital Ads',
         'analytics': 'Analytics',
+        'videos': 'Video Production',
+        'graphics': 'Graphics Design',
+        'photography': 'Photography Services',
+        'microcampaigns': 'Micro Campaigns',
         'contacts': 'Voter Database',
         'templates': 'Templates',
         'reports': 'Reports',
@@ -87,10 +135,17 @@ function updatePageTitle(section) {
 
 // Initialize Charts
 function initCharts() {
-    // Campaign Performance Chart
-    const campaignCtx = document.getElementById('campaignChart');
-    if (campaignCtx) {
-        new Chart(campaignCtx, {
+    // Check if Chart.js is loaded
+    if (typeof Chart === 'undefined') {
+        console.warn('Chart.js is not loaded. Charts will not be displayed.');
+        return;
+    }
+    
+    try {
+        // Campaign Performance Chart
+        const campaignCtx = document.getElementById('campaignChart');
+        if (campaignCtx) {
+            window.campaignChart = new Chart(campaignCtx, {
             type: 'line',
             data: {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
@@ -156,14 +211,24 @@ function initCharts() {
     
     // Initialize other analytics charts
     initAnalyticsCharts();
+    
+    } catch (error) {
+        console.error('Error initializing charts:', error);
+        // Hide chart containers if Chart.js fails
+        const chartContainers = document.querySelectorAll('.chart-container');
+        chartContainers.forEach(container => {
+            container.style.display = 'none';
+        });
+    }
 }
 
 // Initialize Analytics Charts
 function initAnalyticsCharts() {
-    // Reach Analysis Chart
-    const reachCtx = document.getElementById('reachChart');
-    if (reachCtx) {
-        new Chart(reachCtx, {
+    try {
+        // Reach Analysis Chart
+        const reachCtx = document.getElementById('reachChart');
+        if (reachCtx) {
+            window.reachChart = new Chart(reachCtx, {
             type: 'bar',
             data: {
                 labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
@@ -265,6 +330,10 @@ function initAnalyticsCharts() {
                 }
             }
         });
+    }
+    
+    } catch (error) {
+        console.error('Error initializing analytics charts:', error);
     }
 }
 
@@ -591,6 +660,23 @@ function trackPageLoad() {
             });
         }
     });
+}
+
+// New Services Modal Functions
+function openVideoModal() {
+    alert('Video Production Modal will open here. Feature coming soon!');
+}
+
+function openGraphicsModal() {
+    alert('Graphics Design Modal will open here. Feature coming soon!');
+}
+
+function openPhotographyModal() {
+    alert('Photography Booking Modal will open here. Feature coming soon!');
+}
+
+function openMicroCampaignModal() {
+    alert('Micro Campaign Modal will open here. Feature coming soon!');
 }
 
 trackPageLoad();
