@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - VR Digital India</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2><i class="fas fa-vote-yea"></i> VR Digital</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#dashboard" class="nav-item active">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#campaigns" class="nav-item">
+                <i class="fas fa-bullhorn"></i>
+                <span>Campaigns</span>
+            </a>
+            <a href="#sms" class="nav-item">
+                <i class="fas fa-sms"></i>
+                <span>SMS Marketing</span>
+            </a>
+            <a href="#calls" class="nav-item">
+                <i class="fas fa-phone-alt"></i>
+                <span>Call Campaigns</span>
+            </a>
+            <a href="#ads" class="nav-item">
+                <i class="fas fa-ad"></i>
+                <span>Digital Ads</span>
+            </a>
+            <a href="#analytics" class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Analytics</span>
+            </a>
+            <a href="#contacts" class="nav-item">
+                <i class="fas fa-users"></i>
+                <span>Voter List</span>
+            </a>
+            <a href="#templates" class="nav-item">
+                <i class="fas fa-file-alt"></i>
+                <span>Templates</span>
+            </a>
+            <a href="#reports" class="nav-item">
+                <i class="fas fa-chart-bar"></i>
+                <span>Reports</span>
+            </a>
+            <a href="#settings" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 id="page-title">Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">3</span>
+                </div>
+                <div class="user-profile">
+                    <img src="https://via.placeholder.com/40x40" alt="Profile">
+                    <span>Rahul Sharma</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Overview Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-sms"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>2,45,678</h3>
+                            <p>Total SMS Sent</p>
+                            <span class="stat-trend positive">+12%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>45,321</h3>
+                            <p>Total Calls</p>
+                            <span class="stat-trend positive">+8%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>8,56,789</h3>
+                            <p>Ad Impressions</p>
+                            <span class="stat-trend positive">+15%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>1,23,456</h3>
+                            <p>Voters Reached</p>
+                            <span class="stat-trend positive">+20%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3>Campaign Performance</h3>
+                        <canvas id="campaignChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Monthly Report</h3>
+                        <canvas id="monthlyChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <i class="fas fa-sms"></i>
+                            <div class="activity-info">
+                                <p>New SMS campaign launched</p>
+                                <span>2 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <div class="activity-info">
+                                <p>Voice call campaign completed</p>
+                                <span>4 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <i class="fas fa-chart-line"></i>
+                            <div class="activity-info">
+                                <p>New report generated</p>
+                                <span>6 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SMS Campaign Section -->
+            <section id="sms" class="content-section">
+                <div class="section-header">
+                    <h2>SMS Marketing</h2>
+                    <button class="btn btn-primary" onclick="openSMSModal()">
+                        <i class="fas fa-plus"></i> New SMS Campaign
+                    </button>
+                </div>
+
+                <div class="campaign-stats">
+                    <div class="stat-item">
+                        <h4>SMS Sent</h4>
+                        <p>2,45,678</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Delivered</h4>
+                        <p>2,40,123 (97.7%)</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Read Rate</h4>
+                        <p>1,92,098 (80%)</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Response Rate</h4>
+                        <p>24,012 (10%)</p>
+                    </div>
+                </div>
+
+                <div class="campaigns-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Campaign Name</th>
+                                <th>Date</th>
+                                <th>Sent</th>
+                                <th>Delivered</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Election Rally Invitation</td>
+                                <td>15/01/2025</td>
+                                <td>50,000</td>
+                                <td>48,500</td>
+                                <td><span class="status completed">Complete</span></td>
+                                <td>
+                                    <button class="btn-icon" title="View"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-icon" title="Report"><i class="fas fa-chart-bar"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Voting Reminder</td>
+                                <td>14/01/2025</td>
+                                <td>1,00,000</td>
+                                <td>97,500</td>
+                                <td><span class="status active">Active</span></td>
+                                <td>
+                                    <button class="btn-icon" title="View"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-icon" title="Pause"><i class="fas fa-pause"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Voice Call Section -->
+            <section id="calls" class="content-section">
+                <div class="section-header">
+                    <h2>Voice Call Campaigns</h2>
+                    <button class="btn btn-primary" onclick="openCallModal()">
+                        <i class="fas fa-plus"></i> New Call Campaign
+                    </button>
+                </div>
+
+                <div class="call-stats">
+                    <div class="stat-item">
+                        <h4>Total Calls</h4>
+                        <p>45,321</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Connected</h4>
+                        <p>38,567 (85%)</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Average Duration</h4>
+                        <p>2:45 minutes</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Feedback</h4>
+                        <p>12,345 (32%)</p>
+                    </div>
+                </div>
+
+                <div class="call-campaigns">
+                    <div class="campaign-card">
+                        <h4>Voting Awareness</h4>
+                        <p>Status: Running</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 65%"></div>
+                        </div>
+                        <p>65% Complete (6,500/10,000)</p>
+                        <div class="campaign-actions">
+                            <button class="btn btn-sm">Pause</button>
+                            <button class="btn btn-sm btn-outline">Report</button>
+                        </div>
+                    </div>
+                    <div class="campaign-card">
+                        <h4>Candidate Introduction</h4>
+                        <p>Status: Complete</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 100%"></div>
+                        </div>
+                        <p>100% Complete (25,000/25,000)</p>
+                        <div class="campaign-actions">
+                            <button class="btn btn-sm btn-outline">View Report</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Digital Ads Section -->
+            <section id="ads" class="content-section">
+                <div class="section-header">
+                    <h2>Digital Advertising</h2>
+                    <button class="btn btn-primary" onclick="openAdModal()">
+                        <i class="fas fa-plus"></i> New Ad Campaign
+                    </button>
+                </div>
+
+                <div class="ad-platforms">
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <i class="fab fa-facebook"></i>
+                            <h4>Facebook & Instagram</h4>
+                        </div>
+                        <div class="platform-stats">
+                            <p>Impressions: 5,67,890</p>
+                            <p>Clicks: 23,456</p>
+                            <p>CTR: 4.1%</p>
+                            <p>Spent: ₹45,000</p>
+                        </div>
+                        <button class="btn btn-sm">Manage</button>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <i class="fab fa-google"></i>
+                            <h4>Google Ads</h4>
+                        </div>
+                        <div class="platform-stats">
+                            <p>Impressions: 3,45,678</p>
+                            <p>Clicks: 15,678</p>
+                            <p>CTR: 4.5%</p>
+                            <p>Spent: ₹32,000</p>
+                        </div>
+                        <button class="btn btn-sm">Manage</button>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <i class="fab fa-youtube"></i>
+                            <h4>YouTube</h4>
+                        </div>
+                        <div class="platform-stats">
+                            <p>Views: 1,23,456</p>
+                            <p>Likes: 8,901</p>
+                            <p>Shares: 2,345</p>
+                            <p>Spent: ₹28,000</p>
+                        </div>
+                        <button class="btn btn-sm">Manage</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="content-section">
+                <div class="section-header">
+                    <h2>Analytics</h2>
+                    <div class="date-filter">
+                        <select>
+                            <option>Last 7 days</option>
+                            <option>Last 30 days</option>
+                            <option>Last 3 months</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h4>Reach Analysis</h4>
+                        <canvas id="reachChart"></canvas>
+                    </div>
+                    <div class="analytics-card">
+                        <h4>Engagement Trend</h4>
+                        <canvas id="engagementChart"></canvas>
+                    </div>
+                    <div class="analytics-card">
+                        <h4>ROI Tracking</h4>
+                        <canvas id="roiChart"></canvas>
+                    </div>
+                    <div class="analytics-card">
+                        <h4>Demographics</h4>
+                        <canvas id="demographicsChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Voter Contacts Section -->
+            <section id="contacts" class="content-section">
+                <div class="section-header">
+                    <h2>Voter Database</h2>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary" onclick="importContacts()">
+                            <i class="fas fa-upload"></i> Import
+                        </button>
+                        <button class="btn btn-primary" onclick="addContact()">
+                            <i class="fas fa-plus"></i> New Contact
+                        </button>
+                    </div>
+                </div>
+
+                <div class="contacts-filter">
+                    <input type="text" placeholder="Search name or number..." class="search-input">
+                    <select class="filter-select">
+                        <option>All Areas</option>
+                        <option>Area 1</option>
+                        <option>Area 2</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>All Age Groups</option>
+                        <option>18-25</option>
+                        <option>26-35</option>
+                        <option>36-50</option>
+                        <option>50+</option>
+                    </select>
+                </div>
+
+                <div class="contacts-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAll"></th>
+                                <th>Name</th>
+                                <th>Phone Number</th>
+                                <th>Area</th>
+                                <th>Age</th>
+                                <th>Last Contact</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>Ram Kumar</td>
+                                <td>+91 9876543210</td>
+                                <td>Area 1</td>
+                                <td>35</td>
+                                <td>15/01/2025</td>
+                                <td>
+                                    <button class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon" title="Call"><i class="fas fa-phone"></i></button>
+                                    <button class="btn-icon" title="Send SMS"><i class="fas fa-sms"></i></button>
+                                </td>
+                            </tr>
+                            <!-- More rows... -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- SMS Campaign Modal -->
+    <div id="smsModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Create New SMS Campaign</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="smsForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Campaign Name</label>
+                            <input type="text" required placeholder="Enter campaign name">
+                        </div>
+                        <div class="form-group">
+                            <label>Priority</label>
+                            <select required>
+                                <option>Normal</option>
+                                <option>High</option>
+                                <option>Urgent</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Message Text (160 characters)</label>
+                        <textarea placeholder="Write your message here..." maxlength="160"></textarea>
+                        <div class="char-count">0/160</div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Recipient Group</label>
+                            <select required>
+                                <option>All Voters</option>
+                                <option>Area 1</option>
+                                <option>Area 2</option>
+                                <option>Custom List</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Send Time</label>
+                            <select required>
+                                <option>Send Now</option>
+                                <option>Schedule</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeSMSModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Start Campaign</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
