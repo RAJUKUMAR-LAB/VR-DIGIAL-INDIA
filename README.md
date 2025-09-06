@@ -1,5 +1,13 @@
 # VR Digital India - Election Digital Marketing Platform
 
+🎉 **WEBSITE IS NOW LIVE!** 
+
+## 🌐 Live Website URLs
+
+- **Main Website**: https://rajukumar-lab.github.io/VR-DIGIAL-INDIA
+- **Admin Dashboard**: https://rajukumar-lab.github.io/VR-DIGIAL-INDIA/dashboard.html
+- **Status Page**: https://rajukumar-lab.github.io/VR-DIGIAL-INDIA/status.html
+
 Complete digital marketing solution for election campaigns in India
 
 ## Project Description
